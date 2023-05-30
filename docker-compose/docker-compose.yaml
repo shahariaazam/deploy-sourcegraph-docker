@@ -168,7 +168,8 @@ services:
     volumes:
       - 'sourcegraph-frontend-0:/mnt/cache'
     networks:
-      - sourcegraph
+      sourcegraph:
+        ipv4_address: 172.22.0.28
     restart: always
     depends_on:
       sourcegraph-frontend-internal:
@@ -810,3 +811,7 @@ volumes:
   zoekt-0-shared:
 networks:
   sourcegraph:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.0.0/24
